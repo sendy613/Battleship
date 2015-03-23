@@ -1,5 +1,7 @@
 package battleship;
 
+import java.awt.Color;
+
 
 public class Cell{
 	
@@ -31,8 +33,9 @@ public class Cell{
 		this.y = y;
 	}
 	
-	public void clicked(){
+	public void clicked(Color color){
 		clicked = true;
+		this.setColor(color); //make cell a jbutton?
 	}
 	
 	public void occupiedByShip(){

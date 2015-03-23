@@ -2,46 +2,48 @@ package battleship;
 
 import java.awt.Color;
 
-//numOfCells, array of Cells[numOfCells], vertical boolean, Color color, boolean sunk, int counter
 public class Ship {
 	private int numOfCells;
 	private Cell[] cellsArray;
-	private boolean vertical;
+	private boolean vertical; //for GUI picture use later
 	private Color color;
 	private boolean sunk;
-	private int counter;
+	private int amountSunk;
 
-	public Ship(int numOfCells,boolean vertical, Color color) {
+	public Ship(int numOfCells, boolean vertical, Color color) {
 		this.numOfCells = numOfCells;
 		this.cellsArray = new Cell[numOfCells];
 		this.vertical = vertical;
 		this.color = color;
-		sunk=false;
-		counter=0;
-	}
-
-	public int getNumOfCells() {
-		return numOfCells;
+		sunk = false;
+		amountSunk = 0;
 	}
 
 	public Cell[] getCellsArray() {
 		return cellsArray;
 	}
 
-	public boolean isVertical() {
-		return vertical;
+	public void setCellsArray(Cell[] array) {
+		cellsArray = array;
 	}
 
 	public Color getColor() {
 		return color;
 	}
+	
+	public boolean getVertical(){
+		return vertical;
+	}
 
 	public boolean isSunk() {
+		if (numOfCells == amountSunk) {
+			sunk = true;
+		}
 		return sunk;
 	}
 
-	public int getCounter() {
-		return counter;
+	public int getAmountSunk() {
+		return amountSunk;
 	}
 
 	public void setNumOfCells(int numOfCells) {
@@ -60,9 +62,8 @@ public class Ship {
 		this.sunk = sunk;
 	}
 
-	public void setCounter(int counter) {
-		this.counter = counter;
+	public void anotherCellSunk() {
+		this.amountSunk++;
 	}
-	
 
 }

@@ -1,12 +1,18 @@
 package battleship;
 
-public class Cell {
+
+public class Cell{
+	
 	private int x;
 	private int y;
+	private boolean clicked;
+	private boolean occupiedByShip;
 
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
+		clicked = false;
+		occupiedByShip = false;
 	}
 
 	public int getX() {
@@ -25,4 +31,19 @@ public class Cell {
 		this.y = y;
 	}
 	
+	public void clicked(){
+		clicked = true;
+	}
+	
+	public void occupiedByShip(){
+		occupiedByShip = true;
+	}
+	
+	public boolean getClicked(){
+		return clicked;
+	}
+	
+	public boolean getOccupiedByShip(){
+		return occupiedByShip;
+	}
 }

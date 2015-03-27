@@ -2,19 +2,23 @@ package battleship;
 
 import java.awt.Color;
 
+import javax.swing.JButton;
 
-public class Cell{
+
+public class Cell extends JButton{
 	
 	private int x;
 	private int y;
 	private boolean clicked;
 	private boolean occupiedByShip;
+	private Color color;
 
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
 		clicked = false;
 		occupiedByShip = false;
+		color = Color.YELLOW;
 	}
 
 	public int getX() {
@@ -33,11 +37,19 @@ public class Cell{
 		this.y = y;
 	}
 	
-	public void clicked(Color color){
+	public void clicked(){
 		clicked = true;
-		this.setColor(color); //make cell a jbutton?
 	}
 	
+	public void setColor(Color color2) {
+		color = color2;
+		
+	}
+	
+	public Color getColor(){
+		return color;
+	}
+
 	public void occupiedByShip(){
 		occupiedByShip = true;
 	}

@@ -3,12 +3,12 @@ package battleship;
 public class Main {
 	public static void main(String args[]) {
 		Game game = new Game();
-		game.setVisible();
+		game.setGuiVisible();
 		while (true) {
 			game.myTurn();
-			game.didIWin();
+			game.didILose();
 			game.yourTurn();
-			game.didYouWin();
+			game.didYouLose();
 		}
 	}
 }

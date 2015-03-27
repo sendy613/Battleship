@@ -13,6 +13,7 @@ public class Game {
 
 	public void myTurn() {
 		// activate gui
+		gui.activate();
 		// wait for it to be deactivated while(gui.isActivated());
 		// Cell cellClicked = gui.getCellClicked();
 		// writeToStream(cell);
@@ -29,21 +30,24 @@ public class Game {
 		// write boolean to outputStream
 	}
 
-	public boolean didIWin() {
+	public boolean didILose() {
 		boolean allSunk = me.allSunk();
 		// if true, outputStream.write(WON)
 		// disable gui, YOU WON across opponents board screen;
 		return allSunk;
 	}
 
-	public boolean didYouWin() {
+	public boolean didYouLose() {
+		boolean b =true;
 		// check if inputStream is yelling WON
 		// if yes, return true and
 		// disable gui, write SHE WON across my sunk screen;
 		// else, return false
+		
+		return b;
 	}
 
-	public void setVisible() {
+	public void setGuiVisible() {
 		gui.setVisible(true);
 	}
 

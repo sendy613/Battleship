@@ -37,12 +37,12 @@ public class Board {
 	
 	public void markAsShip(Cell cellClicked){
 		//change color
-		cellClicked.setColor(Color.RED);
+		cellClicked.setBackground(Color.RED);
 	}
 	
 	public void markAsClicked(Cell cellClicked){
 		//change color
-		cellClicked.setColor(Color.WHITE);
+		cellClicked.setBackground(Color.WHITE);
 	}
 	public Cell[][] getBoard(){
 		return board;

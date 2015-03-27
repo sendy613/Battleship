@@ -87,6 +87,7 @@ public class PlayerGui extends JFrame {
 
 	public void activate() {
 		activated = true;
+		yourPanel.setEnabled(true);
 		// activate all cells in opponent's board - or setEditable equivalent?
 	}
 

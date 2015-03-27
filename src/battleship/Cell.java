@@ -7,18 +7,18 @@ import javax.swing.JButton;
 
 public class Cell extends JButton{
 	
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	private boolean clicked;
 	private boolean occupiedByShip;
-	private Color color;
 
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
 		clicked = false;
 		occupiedByShip = false;
-		color = Color.YELLOW;
+		setBackground(Color.YELLOW);
 	}
 
 	public int getX() {
@@ -39,15 +39,6 @@ public class Cell extends JButton{
 	
 	public void clicked(){
 		clicked = true;
-	}
-	
-	public void setColor(Color color2) {
-		color = color2;
-		
-	}
-	
-	public Color getColor(){
-		return color;
 	}
 
 	public void occupiedByShip(){

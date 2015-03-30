@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -25,6 +26,8 @@ public class PlayerGui extends JFrame {
 	private JPanel myPanel;
 	private JPanel yourPanel;
 	private JPanel panel;
+	private JLabel myLabel;
+	private JLabel yourLabel;
 
 	public PlayerGui(Player player) {
 		this.player = player;
@@ -42,7 +45,9 @@ public class PlayerGui extends JFrame {
 		myPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
 		yourPanel = new JPanel(new GridLayout(8, 8, 1, 1));
 		yourPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
-
+		myLabel = new JLabel("My Board");
+		yourLabel = new JLabel("Opponent's Board");
+		
 		Cell temp;
 		// get the myboard cells and make each one a button - grid in North
 		for (int i = 0; i < myBoard.getBoard().length; i++) {
@@ -70,16 +75,11 @@ public class PlayerGui extends JFrame {
 				});
 			}
 		}
-		// give each grid a title
-		// give each button a new ActionListener(){
-		// button's cell = cellClicked;
-		// button.clicked();
-		// button.disable();
-		// gui.deactivate();
-		// }
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel.add(myLabel);
 		panel.add(myPanel);
+		panel.add(yourLabel);
 		panel.add(yourPanel);
 		contentPane.add(panel);
 

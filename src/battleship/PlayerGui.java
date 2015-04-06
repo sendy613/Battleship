@@ -1,14 +1,10 @@
 package battleship;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -51,7 +47,7 @@ public class PlayerGui extends JFrame {
 		Cell temp;
 		// get the myboard cells and make each one a button - grid in North
 		for (int i = 0; i < myBoard.getBoard().length; i++) {
-			for (int j = 0; j < myBoard.getBoard()[i].length; j++) {
+		for (int j = 0; j < myBoard.getBoard()[i].length; j++) {			
 				temp = myBoard.getBoard()[i][j];
 				myPanel.add(temp);
 			}

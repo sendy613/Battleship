@@ -1,6 +1,7 @@
 package battleship;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.JButton;
 
@@ -18,6 +19,7 @@ public class Cell extends JButton{
 		clicked = false;
 		occupiedByShip = false;
 		setBackground(Color.YELLOW);
+		
 	}
 
 	public int getX() {

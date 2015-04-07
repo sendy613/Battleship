@@ -14,9 +14,9 @@ public class Game {
 	public void myTurn() {
 		// activate gui
 		gui.activate();
-		// wait for it to be deactivated while(gui.isActivated());
-		// Cell cellClicked = gui.getCellClicked();
-		// writeToStream(cell);
+		while(gui.isActivated());
+		Cell cellClicked = gui.getCellClicked();
+		// writeToStream(cellClicked);
 		// inputStream.read(boolean);
 		// if boolean is true, me.getopponentBoard().markAsShip()
 		//else markAsClicked()

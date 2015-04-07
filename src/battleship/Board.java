@@ -31,7 +31,7 @@ public class Board {
 	}
 	
 	public boolean isCellAShip(Cell cellClicked){
-		//first mark it as clicked
+		//first mark it as clicked?
 		return board[cellClicked.getX()][cellClicked.getY()].getOccupiedByShip();
 	}
 	

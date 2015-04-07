@@ -22,8 +22,6 @@ public class PlayerGui extends JFrame {
 	private JPanel myPanel;
 	private JPanel yourPanel;
 	private JPanel panel;
-	private JLabel myLabel;
-	private JLabel yourLabel;
 
 	public PlayerGui(Player player) {
 		this.player = player;
@@ -35,28 +33,30 @@ public class PlayerGui extends JFrame {
 		setTitle("My Board");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(10, 10);
+		setResizable(false);
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		myPanel = new JPanel(new GridLayout(8, 8, 1, 1));
 		myPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
 		yourPanel = new JPanel(new GridLayout(8, 8, 1, 1));
 		yourPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
-		myLabel = new JLabel("My Board");
-		yourLabel = new JLabel("Opponent's Board");
+		JLabel myLabel = new JLabel("My Board");
+		JLabel yourLabel = new JLabel("Opponent's Board");
 		
-		Cell temp;
+		Cell[][] tempBoard = myBoard.getBoard();
 		// get the myboard cells and make each one a button - grid in North
-		for (int i = 0; i < myBoard.getBoard().length; i++) {
-		for (int j = 0; j < myBoard.getBoard()[i].length; j++) {			
-				temp = myBoard.getBoard()[i][j];
-				myPanel.add(temp);
+		for (int i = 0; i < tempBoard.length; i++) {
+		for (int j = 0; j < tempBoard[i].length; j++) {			
+				myPanel.add(tempBoard[i][j]);
 			}
 		}
 
+		Cell temp;
+		tempBoard = opponentBoard.getBoard();
 		// get opponents cells and make each one a button - grid in South
-		for (int i = 0; i < opponentBoard.getBoard().length; i++) {
-			for (int j = 0; j < opponentBoard.getBoard()[i].length; j++) {
-				temp = opponentBoard.getBoard()[i][j];
+		for (int i = 0; i < tempBoard.length; i++) {
+			for (int j = 0; j < tempBoard[i].length; j++) {
+				temp = tempBoard[i][j];
 				yourPanel.add(temp);
 				temp.addActionListener(new ActionListener() {
 
@@ -93,7 +93,11 @@ public class PlayerGui extends JFrame {
 		// deactivate all cells in opponent's board or setEditable equivalent?
 	}
 
-	public boolean getActivated() {
+	public boolean isActivated() {
 		return activated;
+	}
+	
+	public Cell getCellClicked(){
+		return cellClicked;
 	}
 }

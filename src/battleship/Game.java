@@ -28,13 +28,12 @@ public class Game {
 	public void myTurn() {
 		// activate gui
 		gui.activate();
-		while (gui.isActivated())
-			;
+		while (gui.isActivated());
 		Cell cellClicked = gui.getCellClicked();
 		// writeToStream(cellClicked);
 		// inputStream.read(boolean);
-		// if boolean is true, me.getopponentBoard().markAsShip()
-		// else markAsClicked()
+		// if boolean is true, me.getopponentBoard().markAsShip();
+		// else markAsClicked();
 	}
 
 	public void yourTurn() {

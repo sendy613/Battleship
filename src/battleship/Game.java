@@ -5,22 +5,43 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Game {
-
+	private Integer playerNum;
 	private Player me;
 	private PlayerGui gui;
 	private IOThread reader;
 	private ServerSocket serverSocket;
+	private Socket cSocket;
 	private Socket socket;
 
-	public Game() {
+	public Game(Integer num) {
+		playerNum = num;
 		me = new Player();
 		gui = new PlayerGui(me);
-		try {
-			serverSocket = new ServerSocket(2000);
-			socket = serverSocket.accept();
-		} catch (IOException e) {
-			e.printStackTrace();
+		// if num==1 (server) then it opens the serverSocket
+		if (playerNum == 1) {
+			try {
+				serverSocket = new ServerSocket(2000);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			// if num==2 (client) it opens a socket
+		} else if (playerNum == 2) {
+
+			try {
+				cSocket = new Socket("localhost", 2000);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		// server accepts the client
+		if (playerNum == 1) {
+			try {
+				socket = serverSocket.accept();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
 		reader = new IOThread(socket);
 		reader.start();
 	}
@@ -33,11 +54,6 @@ public class Game {
 		}
 		Boolean b = me.getMyBoard().isCellAShip(opponentCell);
 		reader.write(b.toString());
-		if (b) {
-			me.getOpponentBoard().markAsShip(opponentCell);
-		} else {
-			me.getOpponentBoard().markAsClicked(opponentCell);
-		}
 
 		// activate your gui and send your own clicked cell to the stream for
 		// your opponent to receive at his turn

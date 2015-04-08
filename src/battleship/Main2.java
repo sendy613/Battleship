@@ -1,8 +1,9 @@
 package battleship;
 
-public class Main {
+public class Main2 {
 	public static void main(String args[]) {
-		Game game = new Game();
+		//client
+		Game game = new Game(2);
 		game.setGuiVisible();
 		while (true) {
 			game.myTurn();

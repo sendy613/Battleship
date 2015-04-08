@@ -21,16 +21,32 @@ public class Game {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		reader = new IOThread(new Socket());
-		// reader.start();
+		reader = new IOThread(socket);
+		reader.start();
 	}
 
 	public void myTurn() {
-		// activate gui
+		// get opponent's clicked cell and mark his board as ship or not
+		Cell opponentCell;
+		if (reader.read() != null) {
+			opponentCell = reader.read();
+		}
+		Boolean b = me.getMyBoard().isCellAShip(opponentCell);
+		reader.write(b.toString());
+		if (b) {
+			me.getOpponentBoard().markAsShip(opponentCell);
+		} else {
+			me.getOpponentBoard().markAsClicked(opponentCell);
+		}
+
+		// activate your gui and send your own clicked cell to the stream for
+		// your opponent to receive at his turn
 		gui.activate();
 		while (gui.isActivated())
 			;
 		Cell cellClicked = gui.getCellClicked();
+		reader.write(cellClicked);
+
 		// writeToStream(cellClicked);
 		// inputStream.read(boolean);
 		// if boolean is true, me.getopponentBoard().markAsShip()

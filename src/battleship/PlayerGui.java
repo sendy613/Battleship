@@ -2,13 +2,16 @@ package battleship;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 public class PlayerGui extends JFrame {
@@ -22,6 +25,8 @@ public class PlayerGui extends JFrame {
 	private JPanel myPanel;
 	private JPanel yourPanel;
 	private JPanel panel;
+	private JPanel status;
+	private JTextArea statusBox;
 
 	public PlayerGui(Player player) {
 		this.player = player;
@@ -42,6 +47,10 @@ public class PlayerGui extends JFrame {
 		yourPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
 		JLabel myLabel = new JLabel("My Board");
 		JLabel yourLabel = new JLabel("Opponent's Board");
+		status = new JPanel(new FlowLayout());
+		statusBox = new JTextArea();
+		//statusBox.setColumns(15);
+		statusBox.setBackground(this.getBackground());
 		
 		Cell[][] tempBoard = myBoard.getBoard();
 		// get the myboard cells and make each one a button - grid in North
@@ -77,6 +86,8 @@ public class PlayerGui extends JFrame {
 		panel.add(myPanel);
 		panel.add(yourLabel);
 		panel.add(yourPanel);
+		status.add(statusBox);
+		panel.add(status);
 		contentPane.add(panel);
 
 	}
@@ -99,5 +110,9 @@ public class PlayerGui extends JFrame {
 	
 	public Cell getCellClicked(){
 		return cellClicked;
+	}
+	
+	public JTextArea getStatus(){
+		return statusBox;
 	}
 }

@@ -1,62 +1,58 @@
 package battleship;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 
 public class IOThread extends Thread implements IOListener {
-	// read individ lines from stream and do something with it
+
 	private Socket socket;
-	private PrintWriter pw;
-	private String line;
+	private InputStream in;
+	private OutputStream out;
+	private ObjectOutputStream objOut;
+	private ObjectInputStream objIn;
 
 	public IOThread(Socket socket) {
 		this.socket = socket;
 	}
 
 	public void run() {
-		InputStream in;
-		OutputStream out;
+
 		try {
 			out = socket.getOutputStream();
-			pw = new PrintWriter(out);
 			in = socket.getInputStream();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			String line;
-			while ((line = reader.readLine()) != null) {
-				// tells listener that read a line
-				this.onLineRead(line);
-			}
+			objOut = new ObjectOutputStream(out);
+			objIn = new ObjectInputStream(in);
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// tell listener when program ends
 		this.onCloseSocket(socket);
 	}
 
-	@Override
-	public void onLineRead(String line) {
-		this.line = line;
-	}
-
-	public String read() {
-		return line;
+	public Object read() {
+		//need a flusher for a new object? - does the old object sit in the stream after it's read?
+		try {
+			return objIn.readObject();
+		} catch (ClassNotFoundException e) {
+		} catch (IOException e) {
+		}
+		return new Object();
 	}
 
 	@Override
 	public void onCloseSocket(Socket socket) {
-
+		//do what??
 	}
 
 	@Override
-	public void write(String text) {
-		pw.write(text);
-		pw.flush();
-
+	public void write(Object obj) {
+		try {
+			objOut.writeObject(obj);
+		} catch (IOException e) {
+		}
 	}
 }

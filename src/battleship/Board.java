@@ -32,6 +32,8 @@ public class Board {
 	
 	public boolean isCellAShip(Cell cellClicked){
 		//first mark it as clicked?
+		board[cellClicked.getX()][cellClicked.getY()].clicked();
+		board[cellClicked.getX()][cellClicked.getY()].setBackground(Color.GREEN);
 		return board[cellClicked.getX()][cellClicked.getY()].getOccupiedByShip();
 	}
 	

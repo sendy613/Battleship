@@ -4,21 +4,26 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 
-public class IOThread extends Thread implements IOListener{
+public class IOThread extends Thread implements IOListener {
 	// read individ lines from stream and do something with it
 	private Socket socket;
-	//private ReaderListener listener;
-	
+	private PrintWriter pw;
+	private String line;
+
 	public IOThread(Socket socket) {
 		this.socket = socket;
-		//this.listener = listener;
 	}
 
 	public void run() {
 		InputStream in;
+		OutputStream out;
 		try {
+			out = socket.getOutputStream();
+			pw = new PrintWriter(out);
 			in = socket.getInputStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			String line;
@@ -36,13 +41,22 @@ public class IOThread extends Thread implements IOListener{
 
 	@Override
 	public void onLineRead(String line) {
-		// TODO Auto-generated method stub
-		
+		this.line = line;
+	}
+
+	public String read() {
+		return line;
 	}
 
 	@Override
 	public void onCloseSocket(Socket socket) {
-		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void write(String text) {
+		pw.write(text);
+		pw.flush();
+
 	}
 }

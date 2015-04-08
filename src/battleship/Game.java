@@ -47,50 +47,44 @@ public class Game {
 	}
 
 	public void myTurn() {
-		// get opponent's clicked cell and mark his board as ship or not
-		Cell opponentCell;
-		if (reader.read() != null) {
-			opponentCell = reader.read();
-		}
-		Boolean b = me.getMyBoard().isCellAShip(opponentCell);
-		reader.write(b.toString());
-
-		// activate your gui and send your own clicked cell to the stream for
-		// your opponent to receive at his turn
 		gui.activate();
-		while (gui.isActivated());
+		while (gui.isActivated())
+			;
 		Cell cellClicked = gui.getCellClicked();
 		reader.write(cellClicked);
-
-		// writeToStream(cellClicked);
-		// inputStream.read(boolean);
-		// if boolean is true, me.getopponentBoard().markAsShip();
-		// else markAsClicked();
+		boolean hitAShip = (boolean) reader.read();
+		if (hitAShip) {
+			me.getOpponentBoard().markAsShip(cellClicked);
+		} else {
+			me.getOpponentBoard().markAsClicked(cellClicked);
+		}
 	}
 
 	public void yourTurn() {
-		// Cell selected = inputStream.read();
-		// boolean = me.getMyBoard.isCellAShip(selected); - mark as clicked in
-		// method
-		// if yes { markAsShip() }
-		// if no { markAsClicked() }
-		// write boolean to outputStream
+		Cell opponentCell = null;
+		opponentCell = (Cell) reader.read();
+		Boolean b = me.getMyBoard().isCellAShip(opponentCell);
+		reader.write(b);
 	}
 
 	public boolean didILose() {
 		boolean allSunk = me.allSunk();
-		// if true, outputStream.write(WON)
-		// disable gui, YOU WON across opponents board screen;
+		if (allSunk) {
+			reader.write("I WON");
+			// GAME OVER, YOU WON in the status box
+			gui.deactivate();
+		}
 		return allSunk;
 	}
 
 	public boolean didYouLose() {
-		boolean b = true;
-		// check if inputStream is yelling WON
-		// if yes, return true and
-		// disable gui, write SHE WON across my sunk screen;
-		// else, return false
-
+		boolean b = false;
+		String won = (String) reader.read();
+		if (won.equals("I WON")) {
+			b = true;
+			// write GAME OVER, SHE WON in the status box
+			gui.deactivate();
+		}
 		return b;
 	}
 

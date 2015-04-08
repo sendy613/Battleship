@@ -2,7 +2,6 @@ package battleship;
 
 import java.awt.Color;
 
-// arrayOfShips[5], board[][] of cells with your ships, opponents empty board, int numShipsLeft, client
 public class Player {
 	private Ship[] arrayOfShips;
 	private Board myBoard;

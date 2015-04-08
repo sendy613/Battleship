@@ -2,14 +2,18 @@ package battleship;
 
 public class Main1 {
 	public static void main(String args[]) {
-		//server
+		// server
 		Game game = new Game(1);
 		game.setGuiVisible();
 		while (true) {
 			game.myTurn();
-			game.didILose();
+			if (game.didILose()) {
+				break;
+			}
 			game.yourTurn();
-			game.didYouLose();
+			if (game.didYouLose()) {
+				break;
+			}
 		}
 	}
 }

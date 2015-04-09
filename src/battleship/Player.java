@@ -7,12 +7,14 @@ import javax.swing.JTextArea;
 // arrayOfShips[5], board[][] of cells with your ships, opponents empty board, int numShipsLeft, client
 
 public class Player {
+	private int playerNumber;
 	private Ship[] arrayOfShips;
 	private Board myBoard;
 	private Board opponentBoard;
 	private JTextArea status;
 
-	public Player() {
+	public Player(int playerNumber) {
+		this.playerNumber = playerNumber;
 		myBoard = new Board();
 		opponentBoard = new Board();
 
@@ -55,5 +57,9 @@ public class Player {
 	public void setStatus(JTextArea status) {
 		this.status=status;
 		status.setText("Ships placed");
+	}
+	
+	public int getPlayerNumber(){
+		return playerNumber;
 	}
 }

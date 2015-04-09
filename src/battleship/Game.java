@@ -18,7 +18,7 @@ public class Game {
 
 	public Game(Integer num) {
 		playerNum = num;
-		me = new Player();
+		me = new Player(playerNum);
 		gui = new PlayerGui(me);
 		this.statusBox = gui.getStatus();
 		me.setStatus(statusBox);
@@ -39,6 +39,8 @@ public class Game {
 
 			try {
 				cSocket = new Socket("localhost", 2001);
+				reader = new IOThread(cSocket);
+				reader.start();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -47,13 +49,12 @@ public class Game {
 		if (playerNum == 1) {
 			try {
 				socket = serverSocket.accept();
+				reader = new IOThread(socket);
+				reader.start();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
-		reader = new IOThread(socket);
-		reader.start();
 
 	}
 
@@ -77,11 +78,10 @@ public class Game {
 		Cell opponentCell = null;
 		opponentCell = (Cell) reader.read();
 		Boolean b = me.getMyBoard().isCellAShip(opponentCell);
-		if(b){
+		if (b) {
 			statusBox.setText("Player hit your ship");
-		}
-		else{
-			statusBox.setText("Player missed your ship");	
+		} else {
+			statusBox.setText("Player missed your ship");
 		}
 		reader.write(b);
 	}
@@ -90,7 +90,7 @@ public class Game {
 		boolean allSunk = me.allSunk();
 		if (allSunk) {
 			reader.write("I WON");
-			// GAME OVER, YOU WON in the status box
+			statusBox.setText("YOU WON!");
 			gui.deactivate();
 		}
 		return allSunk;
@@ -101,7 +101,7 @@ public class Game {
 		String won = (String) reader.read();
 		if (won.equals("I WON")) {
 			b = true;
-			// write GAME OVER, SHE WON in the status box
+			statusBox.setText("Game Over. All your ships have sunk.");
 			gui.deactivate();
 		}
 		return b;

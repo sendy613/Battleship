@@ -35,7 +35,7 @@ public class PlayerGui extends JFrame {
 		activated = false;
 
 		setSize(500, 700);
-		setTitle("My Board");
+		setTitle("Player " + player.getPlayerNumber() + "'s Board");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(10, 10);
 		setResizable(false);

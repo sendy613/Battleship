@@ -34,18 +34,23 @@ public class IOThread extends Thread implements IOListener {
 	}
 
 	public Object read() {
-		//need a flusher for a new object? - does the old object sit in the stream after it's read?
-		try {
-			return objIn.readObject();
-		} catch (ClassNotFoundException e) {
-		} catch (IOException e) {
+		// need a flusher for a new object? - does the old object sit in the
+		// stream after it's read?
+		Object obj = null;
+		while (obj == null) {
+			try {
+				obj = objIn.readObject();
+			} catch (ClassNotFoundException e) {
+			} catch (IOException e) {
+			} catch (NullPointerException e) {
+			}
 		}
-		return new Object();
+		return obj;
 	}
 
 	@Override
 	public void onCloseSocket(Socket socket) {
-		//do what??
+		// do what??
 	}
 
 	@Override

@@ -60,6 +60,7 @@ public class PlayerGui extends JFrame {
 		status = new JPanel(new FlowLayout());
 		status.setBackground(blue);
 		statusBox = new JTextPane();
+		statusBox.setEditable(false);
 		statusBox.setSize(50, 30);
 		SimpleAttributeSet attribs = new SimpleAttributeSet();
 		StyleConstants.setAlignment(attribs, StyleConstants.ALIGN_CENTER);
@@ -115,14 +116,28 @@ public class PlayerGui extends JFrame {
 
 	public void activate() {
 		activated = true;
-		yourBoardPanel.setEnabled(true);
+	//	yourBoardPanel.setEnabled(true);
 		// activate all cells in opponent's board - or setEditable equivalent?
+		
+		Cell[][] tempBoard = opponentBoard.getBoard();
+		for (int i = 0; i < tempBoard.length; i++) {
+			for (int j = 0; j < tempBoard[i].length; j++) {
+				tempBoard[i][j].setEnabled(true);
+			}
+		}
 	}
 
 	public void deactivate() {
 		activated = false;
-		yourBoardPanel.setEnabled(false);
+	//	yourBoardPanel.setEnabled(false);
 		// deactivate all cells in opponent's board or setEditable equivalent?
+		
+		Cell[][] tempBoard = opponentBoard.getBoard();
+		for (int i = 0; i < tempBoard.length; i++) {
+			for (int j = 0; j < tempBoard[i].length; j++) {
+				tempBoard[i][j].setEnabled(false);
+			}
+		}
 	}
 
 	public boolean isActivated() {

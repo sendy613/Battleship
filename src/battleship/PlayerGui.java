@@ -14,7 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -66,7 +68,8 @@ public class PlayerGui extends JFrame {
 		statusBox.setParagraphAttributes(attribs, true);
 		statusBox.setBackground(purple);
 		Border border = BorderFactory.createLineBorder(Color.black);
-		statusBox.setBorder(border);
+		Border margin = new EmptyBorder(10,10,10,10);
+		statusBox.setBorder(new CompoundBorder(border, margin));
 
 		Cell[][] tempBoard = myBoard.getBoard();
 		// get the myboard cells and make each one a button - grid in North

@@ -52,6 +52,7 @@ public class IOThread extends Thread implements IOListener {
 	public void write(Object obj) {
 		try {
 			objOut.writeObject(obj);
+			objOut.flush();
 		} catch (IOException e) {
 		}
 	}

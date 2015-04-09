@@ -32,7 +32,9 @@ public class Board {
 	
 	public boolean isCellAShip(Cell cellClicked){
 		board[cellClicked.getX()][cellClicked.getY()].clicked();
-		board[cellClicked.getX()][cellClicked.getY()].setBackground(Color.GREEN);
+		if(board[cellClicked.getX()][cellClicked.getY()].getOccupiedByShip()){
+		board[cellClicked.getX()][cellClicked.getY()].setBackground(Color.RED);
+		}
 		return board[cellClicked.getX()][cellClicked.getY()].getOccupiedByShip();
 	}
 	

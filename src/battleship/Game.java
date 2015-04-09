@@ -58,45 +58,31 @@ public class Game {
 	}
 
 	public void myTurn() {
-<<<<<<< HEAD
-		// get opponent's clicked cell and mark his board as ship or not
-		Cell opponentCell;
-		if (reader.read() != null) {
-			// opponentCell = reader.read();
-		}
-		// Boolean b = me.getMyBoard().isCellAShip(opponentCell);
-		// reader.write(b.toString());
-
-		// activate your gui and send your own clicked cell to the stream for
-		// your opponent to receive at his turn
-=======
->>>>>>> origin/master
 		gui.activate();
 		while (gui.isActivated())
 			;
 		Cell cellClicked = gui.getCellClicked();
-<<<<<<< HEAD
-		// reader.write(cellClicked);
-
-		// writeToStream(cellClicked);
-		// inputStream.read(boolean);
-		// if boolean is true, me.getopponentBoard().markAsShip()
-		// else markAsClicked()
-=======
 		reader.write(cellClicked);
 		boolean hitAShip = (boolean) reader.read();
 		if (hitAShip) {
 			me.getOpponentBoard().markAsShip(cellClicked);
+			statusBox.setText("HIT!");
 		} else {
 			me.getOpponentBoard().markAsClicked(cellClicked);
+			statusBox.setText("MISS!");
 		}
->>>>>>> origin/master
 	}
 
 	public void yourTurn() {
 		Cell opponentCell = null;
 		opponentCell = (Cell) reader.read();
 		Boolean b = me.getMyBoard().isCellAShip(opponentCell);
+		if(b){
+			statusBox.setText("Player hit your ship");
+		}
+		else{
+			statusBox.setText("Player missed your ship");	
+		}
 		reader.write(b);
 	}
 

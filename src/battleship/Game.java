@@ -91,6 +91,8 @@ public class Game {
 			reader.write("I WON");
 			statusBox.setText("YOU WON!");
 			gui.deactivate();
+		} else {
+			reader.write("Nope");
 		}
 		return allSunk;
 	}

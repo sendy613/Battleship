@@ -16,7 +16,8 @@ public class Cell extends JButton{
 		this.y = y;
 		clicked = false;
 		occupiedByShip = false;
-		setBackground(Color.YELLOW);
+		Color darkBlue = new Color(51, 102, 204);
+		setBackground(darkBlue);
 		
 	}
 

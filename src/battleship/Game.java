@@ -3,8 +3,7 @@ package battleship;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 public class Game {
 	private Integer playerNum;
@@ -14,7 +13,7 @@ public class Game {
 	private ServerSocket serverSocket;
 	private Socket cSocket;
 	private Socket socket;
-	private JTextArea statusBox;
+	private JTextPane statusBox;
 
 	public Game(Integer num) {
 		playerNum = num;
@@ -22,7 +21,7 @@ public class Game {
 		gui = new PlayerGui(me);
 		this.statusBox = gui.getStatus();
 		me.setStatus(statusBox);
-		statusBox.append("\nPlayer 1 begin");
+		statusBox.setText(statusBox.getText() + "\nPlayer 1 begin");
 
 		// if num==1 (server) then it opens the serverSocket
 

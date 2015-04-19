@@ -94,7 +94,7 @@ public class PlayerGui extends JFrame {
 				myBoardPanel.add(tempBoard[i][j]);
 			}
 		}
-
+		
 		Cell temp;
 		tempBoard = opponentBoard.getBoard();
 		// get opponents cells and make each one a button - grid in South
@@ -106,6 +106,8 @@ public class PlayerGui extends JFrame {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						//COMMENT
+						System.out.println("cell clicked");
 						cellClicked = (Cell) e.getSource();
 						cellClicked.clicked();
 						cellClicked.setEnabled(false);
@@ -131,6 +133,8 @@ public class PlayerGui extends JFrame {
 		panel.add(boardPanel, BorderLayout.CENTER);
 		panel.add(status, BorderLayout.SOUTH);
 		contentPane.add(panel);
+		
+		//myBoard.disableCells();
 		
 	}
 

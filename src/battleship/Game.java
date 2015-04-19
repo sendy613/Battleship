@@ -27,7 +27,7 @@ public class Game {
 
 		if (playerNum == 1) {
 			try {
-				serverSocket = new ServerSocket(2001);
+				serverSocket = new ServerSocket(2002);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -37,7 +37,7 @@ public class Game {
 		else if (playerNum == 2) {
 
 			try {
-				cSocket = new Socket("localhost", 2001);
+				cSocket = new Socket("localhost", 2002);
 				reader = new IOThread(cSocket);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -64,9 +64,13 @@ public class Game {
 		boolean hitAShip = (boolean) reader.read();
 		if (hitAShip) {
 			me.getOpponentBoard().markAsShip(cellClicked);
+			//COMMENT 
+			System.out.println("HIT");
 			statusBox.setText("HIT!");
 		} else {
 			me.getOpponentBoard().markAsClicked(cellClicked);
+			//COMMENT 
+			System.out.println("MISS");
 			statusBox.setText("MISS!");
 		}
 	}

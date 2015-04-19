@@ -21,11 +21,19 @@ public class Board {
 	}
 
 	//only to be used for myBoard
-	public void placeShips(Ship[] arrayOfShips) {
+/*	public void placeShips(Ship[] arrayOfShips) {
 		for (Ship ship : arrayOfShips) {
 			Cell[] shipCells = ship.getCellsArray();
 			for (Cell cell : shipCells) {
 				cell.occupiedByShip();
+			}
+		}
+	}*/
+	
+	public void disableCells(){
+		for(Cell[] c : board){
+			for(Cell d : c){
+				d.setEnabled(false);
 			}
 		}
 	}

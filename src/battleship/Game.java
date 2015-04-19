@@ -39,7 +39,6 @@ public class Game {
 			try {
 				cSocket = new Socket("localhost", 2001);
 				reader = new IOThread(cSocket);
-				reader.start();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -49,7 +48,6 @@ public class Game {
 			try {
 				socket = serverSocket.accept();
 				reader = new IOThread(socket);
-				reader.start();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -110,6 +108,7 @@ public class Game {
 
 	public void setGuiVisible() {
 		gui.setVisible(true);
+		gui.revalidate();
 	}
 
 }

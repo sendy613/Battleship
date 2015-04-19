@@ -1,6 +1,8 @@
 package battleship;
 
 import java.awt.Color;
+import java.awt.Graphics;
+
 import javax.swing.JButton;
 
 public class Cell extends JButton{

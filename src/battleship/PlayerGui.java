@@ -7,14 +7,12 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -24,7 +22,6 @@ import javax.swing.text.StyleConstants;
 public class PlayerGui extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private Player player;
 	private Board myBoard;
 	private Board opponentBoard;
 	private Cell cellClicked;
@@ -37,7 +34,6 @@ public class PlayerGui extends JFrame {
 	private JTextPane statusBox;
 
 	public PlayerGui(Player player) {
-		this.player = player;
 		myBoard = player.getMyBoard();
 		opponentBoard = player.getOpponentBoard();
 		activated = false;
@@ -51,7 +47,7 @@ public class PlayerGui extends JFrame {
 		contentPane.setLayout(new BorderLayout());
 		Color blue = new Color(102, 153, 255);
 		Color purple = new Color(204, 153, 255);
-		Color darkBlue = new Color(51, 102, 204);
+		//Color darkBlue = new Color(51, 102, 204);
 		myBoardPanel = new JPanel(new GridLayout(8, 8, 1, 1));
 		myBoardPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
 		yourBoardPanel = new JPanel(new GridLayout(8, 8, 1, 1));
@@ -113,8 +109,9 @@ public class PlayerGui extends JFrame {
 		panel.add(boardPanel, BorderLayout.CENTER);
 		panel.add(status, BorderLayout.SOUTH);
 		contentPane.add(panel);
-
+		
 	}
+
 
 	public void activate() {
 		activated = true;

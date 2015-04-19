@@ -7,20 +7,14 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-public class IOThread extends Thread implements IOListener {
+public class IOThread {
 
-	private Socket socket;
 	private InputStream in;
 	private OutputStream out;
 	private ObjectOutputStream objOut;
 	private ObjectInputStream objIn;
 
 	public IOThread(Socket socket) {
-		this.socket = socket;
-	}
-
-	public void run() {
-
 		try {
 			out = socket.getOutputStream();
 			in = socket.getInputStream();
@@ -30,12 +24,9 @@ public class IOThread extends Thread implements IOListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		this.onCloseSocket(socket);
 	}
 
 	public Object read() {
-		// need a flusher for a new object? - does the old object sit in the
-		// stream after it's read?
 		Object obj = null;
 		while (obj == null) {
 			try {
@@ -48,12 +39,6 @@ public class IOThread extends Thread implements IOListener {
 		return obj;
 	}
 
-	@Override
-	public void onCloseSocket(Socket socket) {
-		// do what??
-	}
-
-	@Override
 	public void write(Object obj) {
 		try {
 			objOut.writeObject(obj);

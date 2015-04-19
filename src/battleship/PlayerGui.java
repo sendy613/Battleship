@@ -8,13 +8,9 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
-=======
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
->>>>>>> origin/master
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -51,7 +47,7 @@ public class PlayerGui extends JFrame {
 		opponentBoard = player.getOpponentBoard();
 		activated = false;
 
-		setSize(500, 800);
+		setSize(400, 800);
 		setTitle("Player " + player.getPlayerNumber() + "'s Board");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(10, 10);
@@ -68,13 +64,10 @@ public class PlayerGui extends JFrame {
 		imageLabel = new JLabel(new ImageIcon(logo));
 		title.add(imageLabel);
 		Color blue = new Color(102, 153, 255);
-<<<<<<< HEAD
-		Color purple = new Color(204, 153, 255);
-		//Color darkBlue = new Color(51, 102, 204);
-=======
+		Color purple = new Color(204, 153, 255);	
 		Color red = new Color(207, 20, 20);
 		Color darkBlue = new Color(51, 102, 204);
->>>>>>> origin/master
+
 		myBoardPanel = new JPanel(new GridLayout(8, 8, 1, 1));
 		myBoardPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
 		yourBoardPanel = new JPanel(new GridLayout(8, 8, 1, 1));

@@ -5,10 +5,19 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
+=======
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+>>>>>>> origin/master
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,22 +41,40 @@ public class PlayerGui extends JFrame {
 	private JPanel panel;
 	private JPanel status;
 	private JTextPane statusBox;
+	private JPanel title;
+	private Image logo;
+	private ImageIcon imageIcon;
+	private JLabel imageLabel;
 
 	public PlayerGui(Player player) {
 		myBoard = player.getMyBoard();
 		opponentBoard = player.getOpponentBoard();
 		activated = false;
 
-		setSize(500, 650);
+		setSize(500, 800);
 		setTitle("Player " + player.getPlayerNumber() + "'s Board");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(10, 10);
 		setResizable(false);
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
+		title = new JPanel();
+		try {
+			logo = ImageIO.read(new File("BattleshipLogo.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		imageLabel = new JLabel(new ImageIcon(logo));
+		title.add(imageLabel);
 		Color blue = new Color(102, 153, 255);
+<<<<<<< HEAD
 		Color purple = new Color(204, 153, 255);
 		//Color darkBlue = new Color(51, 102, 204);
+=======
+		Color red = new Color(207, 20, 20);
+		Color darkBlue = new Color(51, 102, 204);
+>>>>>>> origin/master
 		myBoardPanel = new JPanel(new GridLayout(8, 8, 1, 1));
 		myBoardPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
 		yourBoardPanel = new JPanel(new GridLayout(8, 8, 1, 1));
@@ -62,7 +89,7 @@ public class PlayerGui extends JFrame {
 		SimpleAttributeSet attribs = new SimpleAttributeSet();
 		StyleConstants.setAlignment(attribs, StyleConstants.ALIGN_CENTER);
 		statusBox.setParagraphAttributes(attribs, true);
-		statusBox.setBackground(purple);
+		statusBox.setBackground(red);
 		Border border = BorderFactory.createLineBorder(Color.black);
 		Border margin = new EmptyBorder(10,10,10,10);
 		statusBox.setBorder(new CompoundBorder(border, margin));
@@ -100,12 +127,14 @@ public class PlayerGui extends JFrame {
 		boardPanel.setBackground(blue);
 		myBoardPanel.setBackground(blue);
 		yourBoardPanel.setBackground(blue);
+		title.setBackground(blue);
 		boardPanel.setLayout(new BoxLayout(boardPanel, BoxLayout.PAGE_AXIS));
-		boardPanel.add(myLabel);
-		boardPanel.add(myBoardPanel);
 		boardPanel.add(yourLabel);
 		boardPanel.add(yourBoardPanel);
+		boardPanel.add(myLabel);
+		boardPanel.add(myBoardPanel);
 		status.add(statusBox);
+		panel.add(title, BorderLayout.NORTH);
 		panel.add(boardPanel, BorderLayout.CENTER);
 		panel.add(status, BorderLayout.SOUTH);
 		contentPane.add(panel);

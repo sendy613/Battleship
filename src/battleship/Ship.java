@@ -25,6 +25,9 @@ public class Ship {
 
 	public void setCellsArray(Cell[] array) {
 		cellsArray = array;
+		for(Cell cell: cellsArray){
+			cell.setColor(this.color);
+		}
 	}
 
 	public Color getColor() {

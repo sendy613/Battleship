@@ -39,7 +39,7 @@ public class PlayerGui extends JFrame {
 	private JTextPane statusBox;
 	private JPanel title;
 	private Image logo;
-	private ImageIcon imageIcon;
+	//private ImageIcon imageIcon;
 	private JLabel imageLabel;
 
 	public PlayerGui(Player player) {
@@ -47,7 +47,7 @@ public class PlayerGui extends JFrame {
 		opponentBoard = player.getOpponentBoard();
 		activated = false;
 
-		setSize(400, 800);
+		setSize(400, 700);
 		setTitle("Player " + player.getPlayerNumber() + "'s Board");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(10, 10);
@@ -58,15 +58,13 @@ public class PlayerGui extends JFrame {
 		try {
 			logo = ImageIO.read(new File("BattleshipLogo.png"));
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 		imageLabel = new JLabel(new ImageIcon(logo));
 		title.add(imageLabel);
 		Color blue = new Color(102, 153, 255);
-		Color purple = new Color(204, 153, 255);	
+		// Color purple = new Color(204, 153, 255);
 		Color red = new Color(207, 20, 20);
-		Color darkBlue = new Color(51, 102, 204);
+		// Color darkBlue = new Color(51, 102, 204);
 
 		myBoardPanel = new JPanel(new GridLayout(8, 8, 1, 1));
 		myBoardPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
@@ -84,7 +82,7 @@ public class PlayerGui extends JFrame {
 		statusBox.setParagraphAttributes(attribs, true);
 		statusBox.setBackground(red);
 		Border border = BorderFactory.createLineBorder(Color.black);
-		Border margin = new EmptyBorder(10,10,10,10);
+		Border margin = new EmptyBorder(10, 10, 10, 10);
 		statusBox.setBorder(new CompoundBorder(border, margin));
 
 		Cell[][] tempBoard = myBoard.getBoard();
@@ -94,7 +92,7 @@ public class PlayerGui extends JFrame {
 				myBoardPanel.add(tempBoard[i][j]);
 			}
 		}
-		
+
 		Cell temp;
 		tempBoard = opponentBoard.getBoard();
 		// get opponents cells and make each one a button - grid in South
@@ -106,7 +104,7 @@ public class PlayerGui extends JFrame {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						//COMMENT
+						// COMMENT
 						System.out.println("cell clicked");
 						cellClicked = (Cell) e.getSource();
 						cellClicked.clicked();
@@ -133,17 +131,13 @@ public class PlayerGui extends JFrame {
 		panel.add(boardPanel, BorderLayout.CENTER);
 		panel.add(status, BorderLayout.SOUTH);
 		contentPane.add(panel);
-		
-		//myBoard.disableCells();
-		
-	}
 
+		myBoard.disableCells();
+
+	}
 
 	public void activate() {
 		activated = true;
-	//	yourBoardPanel.setEnabled(true);
-		// activate all cells in opponent's board - or setEditable equivalent?
-		
 		Cell[][] tempBoard = opponentBoard.getBoard();
 		for (int i = 0; i < tempBoard.length; i++) {
 			for (int j = 0; j < tempBoard[i].length; j++) {
@@ -154,9 +148,6 @@ public class PlayerGui extends JFrame {
 
 	public void deactivate() {
 		activated = false;
-	//	yourBoardPanel.setEnabled(false);
-		// deactivate all cells in opponent's board or setEditable equivalent?
-		
 		Cell[][] tempBoard = opponentBoard.getBoard();
 		for (int i = 0; i < tempBoard.length; i++) {
 			for (int j = 0; j < tempBoard[i].length; j++) {

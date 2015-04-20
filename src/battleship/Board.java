@@ -2,8 +2,6 @@ package battleship;
 
 import java.awt.Color;
 
-import javax.swing.JComponent;
-
 public class Board {
 
 	public static final int SIZE_OF_BOARD = 8;
@@ -47,13 +45,13 @@ public class Board {
 	}
 	
 	public void markAsShip(Cell cellClicked){
-		//change color
-		cellClicked.setBackground(Color.RED);
+		cellClicked.setColor(Color.RED);
+		//cellClicked.setBackground(Color.RED);
 	}
 	
 	public void markAsClicked(Cell cellClicked){
-		//change color
-		cellClicked.setBackground(Color.WHITE);
+		cellClicked.setColor(Color.WHITE);
+		//cellClicked.setBackground(Color.WHITE);
 	}
 	public Cell[][] getBoard(){
 		return board;

@@ -115,4 +115,8 @@ public class Game {
 		gui.revalidate();
 	}
 
+	public void repaint() {
+		gui.repaint();
+	}
+
 }

@@ -134,7 +134,6 @@ public class PlayerGui extends JFrame {
 		contentPane.add(panel);
 
 		//myBoard.disableCells();
-		//myBoard.disableCells();
 
 	}
 

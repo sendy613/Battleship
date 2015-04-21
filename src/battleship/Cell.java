@@ -9,30 +9,30 @@ public class Cell extends JButton{
 	private int y;
 	private boolean clicked;
 	private boolean occupiedByShip;
-	private Color color;
+	//private Color color;
 
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
 		clicked = false;
 		occupiedByShip = false;
-		color = new Color(51, 102, 204);
+		Color color = new Color(51, 102, 204);
 		setBackground(color);
 	}
 
-	public int getX() {
+	public int getCellX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setCellX(int x) {
 		this.x = x;
 	}
 
-	public int getY() {
+	public int getCellY() {
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setCellY(int y) {
 		this.y = y;
 	}
 
@@ -52,9 +52,10 @@ public class Cell extends JButton{
 		return occupiedByShip;
 	}
 
-	public void setColor(Color color) {
+/*	public void setColor(Color color) {
 		this.color = color;
 		
-	}
+	}*/
+
 	
 }

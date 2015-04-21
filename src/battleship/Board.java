@@ -37,13 +37,13 @@ public class Board {
 	}
 
 	public void markAsShip(Cell cellClicked) {
-		cellClicked.setColor(Color.RED);
-		// cellClicked.setBackground(Color.RED);
+		//cellClicked.setColor(Color.RED);
+		cellClicked.setBackground(Color.RED);
 	}
 
 	public void markAsClicked(Cell cellClicked) {
-		cellClicked.setColor(Color.WHITE);
-		// cellClicked.setBackground(Color.WHITE);
+		//cellClicked.setColor(Color.WHITE);
+		cellClicked.setBackground(Color.WHITE);
 	}
 
 	public Cell[][] getBoard() {

@@ -42,7 +42,6 @@ public class Player {
 					new Cell(3, 7) });
 		}
 		
-		// myBoard.placeShips(arrayOfShips);
 		
 		for (int i = 0; i < arrayOfShips.length; i++) {
 			Cell[] temp = arrayOfShips[i].getCellsArray();

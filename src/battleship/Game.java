@@ -9,7 +9,7 @@ public class Game {
 	private Integer playerNum;
 	private Player me;
 	private PlayerGui gui;
-	private IOThread reader;
+	private IOReader reader;
 	private ServerSocket serverSocket;
 	private Socket cSocket;
 	private Socket socket;
@@ -38,7 +38,7 @@ public class Game {
 
 			try {
 				cSocket = new Socket("localhost", 2002);
-				reader = new IOThread(cSocket);
+				reader = new IOReader(cSocket);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -47,7 +47,7 @@ public class Game {
 		if (playerNum == 1) {
 			try {
 				socket = serverSocket.accept();
-				reader = new IOThread(socket);
+				reader = new IOReader(socket);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

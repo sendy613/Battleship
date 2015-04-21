@@ -7,14 +7,14 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-public class IOThread {
+public class IOReader {
 
 	private InputStream in;
 	private OutputStream out;
 	private ObjectOutputStream objOut;
 	private ObjectInputStream objIn;
 
-	public IOThread(Socket socket) {
+	public IOReader(Socket socket) {
 		try {
 			out = socket.getOutputStream();
 			in = socket.getInputStream();

@@ -60,7 +60,7 @@ public class Game {
 		while (gui.isActivated())
 			;
 		Cell cellClicked = gui.getCellClicked();
-		reader.write(cellClicked);
+		reader.write(new CellCoordinates(cellClicked).getCoord());
 		boolean hitAShip = (boolean) reader.read();
 		if (hitAShip) {
 			me.getOpponentBoard().markAsShip(cellClicked);
@@ -76,8 +76,8 @@ public class Game {
 	}
 
 	public void yourTurn() {
-		Cell opponentCell = null;
-		opponentCell = (Cell) reader.read();
+		CellCoordinates opponentCell = null;
+		opponentCell = (CellCoordinates) reader.read();
 		Boolean b = me.getMyBoard().isCellAShip(opponentCell);
 		if (b) {
 			statusBox.setText("Player hit your ship");

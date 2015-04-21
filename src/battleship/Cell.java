@@ -6,7 +6,6 @@ import javax.swing.JButton;
 
 public class Cell extends JButton{
 	
-	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	private boolean clicked;
@@ -58,4 +57,5 @@ public class Cell extends JButton{
 		this.color = color;
 		
 	}
+	
 }

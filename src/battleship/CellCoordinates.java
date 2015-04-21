@@ -9,8 +9,8 @@ public class CellCoordinates implements Serializable {
 	private int y;
 
 	public CellCoordinates(Cell cell) {
-		x = cell.getX();
-		y = cell.getY();
+		x = cell.getCellX();
+		y = cell.getCellY();
 	}
 
 	public int getX() {

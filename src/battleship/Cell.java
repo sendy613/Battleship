@@ -5,25 +5,25 @@ import javax.swing.JButton;
 
 public class Cell extends JButton{
 	
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	private boolean clicked;
 	private boolean occupiedByShip;
-	//private Color color;
+	private static final Color defaultCellColor = new Color(51, 102, 204);
 
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
 		clicked = false;
 		occupiedByShip = false;
-		Color color = new Color(51, 102, 204);
-		setBackground(color);
+		setBackground(defaultCellColor);
 	}
 
 	public int getCellX() {
 		return x;
 	}
-
+	
 	public void setCellX(int x) {
 		this.x = x;
 	}
@@ -51,11 +51,6 @@ public class Cell extends JButton{
 	public boolean getOccupiedByShip() {
 		return occupiedByShip;
 	}
-
-/*	public void setColor(Color color) {
-		this.color = color;
-		
-	}*/
 
 	
 }

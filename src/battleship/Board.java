@@ -8,6 +8,7 @@ public class Board {
 	private Cell[][] board;
 
 	public Board() {
+
 		board = new Cell[SIZE_OF_BOARD][SIZE_OF_BOARD];
 
 		for (int i = 0; i < SIZE_OF_BOARD; i++) {
@@ -37,12 +38,10 @@ public class Board {
 	}
 
 	public void markAsShip(Cell cellClicked) {
-		//cellClicked.setColor(Color.RED);
 		cellClicked.setBackground(Color.RED);
 	}
 
 	public void markAsClicked(Cell cellClicked) {
-		//cellClicked.setColor(Color.WHITE);
 		cellClicked.setBackground(Color.WHITE);
 	}
 

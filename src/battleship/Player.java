@@ -46,9 +46,9 @@ public class Player {
 		for (int i = 0; i < arrayOfShips.length; i++) {
 			Cell[] temp = arrayOfShips[i].getCellsArray();
 			for (int j = 0; j < temp.length; j++) {
-				Cell tempCell = myBoard.getBoard()[temp[j].getX()][temp[j].getY()];
-				tempCell.occupiedByShip();
+				Cell tempCell = myBoard.getBoard()[temp[j].getCellX()][temp[j].getCellY()];
 				tempCell.setBackground(arrayOfShips[i].getColor());
+				tempCell.occupiedByShip();
 			}
 		}
 		

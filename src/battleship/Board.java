@@ -18,15 +18,6 @@ public class Board {
 
 	}
 
-	//only to be used for myBoard
-/*	public void placeShips(Ship[] arrayOfShips) {
-		for (Ship ship : arrayOfShips) {
-			Cell[] shipCells = ship.getCellsArray();
-			for (Cell cell : shipCells) {
-				cell.occupiedByShip();
-			}
-		}
-	}*/
 	
 	public void disableCells(){
 		for(Cell[] c : board){
@@ -36,7 +27,7 @@ public class Board {
 		}
 	}
 	
-	public boolean isCellAShip(Cell cellClicked){
+	public boolean isCellAShip(CellCoordinates cellClicked){
 		board[cellClicked.getX()][cellClicked.getY()].clicked();
 		if(board[cellClicked.getX()][cellClicked.getY()].getOccupiedByShip()){
 		board[cellClicked.getX()][cellClicked.getY()].setBackground(Color.RED);

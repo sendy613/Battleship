@@ -32,8 +32,11 @@ public class IOThread {
 			try {
 				obj = objIn.readObject();
 			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 			} catch (IOException e) {
+				e.printStackTrace();
 			} catch (NullPointerException e) {
+				e.printStackTrace();
 			}
 		}
 		return obj;

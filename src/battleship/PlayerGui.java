@@ -100,6 +100,7 @@ public class PlayerGui extends JFrame {
 			for (int j = 0; j < tempBoard[i].length; j++) {
 				temp = tempBoard[i][j];
 				yourBoardPanel.add(temp);
+				temp.setEnabled(false);
 				temp.addActionListener(new ActionListener() {
 
 					@Override
@@ -132,7 +133,7 @@ public class PlayerGui extends JFrame {
 		panel.add(status, BorderLayout.SOUTH);
 		contentPane.add(panel);
 
-		myBoard.disableCells();
+		//myBoard.disableCells();
 
 	}
 

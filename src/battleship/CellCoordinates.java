@@ -1,21 +1,24 @@
 package battleship;
 
-public class CellCoordinates {
+import java.io.Serializable;
 
+public class CellCoordinates implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
-	
-	public CellCoordinates(Cell cell){
+
+	public CellCoordinates(Cell cell) {
 		x = cell.getX();
 		y = cell.getY();
 	}
-	public CellCoordinates getCoord(){
-		return this;
-	}
-	public int getX(){
+
+	public int getX() {
 		return x;
 	}
-	public int getY(){
+
+	public int getY() {
 		return y;
 	}
+
 }

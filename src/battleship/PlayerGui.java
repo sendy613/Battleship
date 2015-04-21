@@ -133,11 +133,8 @@ public class PlayerGui extends JFrame {
 		panel.add(status, BorderLayout.SOUTH);
 		contentPane.add(panel);
 
-<<<<<<< HEAD
 		//myBoard.disableCells();
-=======
-	//	myBoard.disableCells();
->>>>>>> origin/master
+		//myBoard.disableCells();
 
 	}
 

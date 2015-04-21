@@ -52,7 +52,6 @@ public class Game {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public void myTurn() {
@@ -60,16 +59,14 @@ public class Game {
 		while (gui.isActivated())
 			;
 		Cell cellClicked = gui.getCellClicked();
-		reader.write(new CellCoordinates(cellClicked).getCoord());
+		reader.write(new CellCoordinates(cellClicked));
 		boolean hitAShip = (boolean) reader.read();
 		if (hitAShip) {
 			me.getOpponentBoard().markAsShip(cellClicked);
-			//COMMENT 
 			System.out.println("HIT");
 			statusBox.setText("HIT!");
 		} else {
 			me.getOpponentBoard().markAsClicked(cellClicked);
-			//COMMENT 
 			System.out.println("MISS");
 			statusBox.setText("MISS!");
 		}
@@ -78,7 +75,7 @@ public class Game {
 	public void yourTurn() {
 		CellCoordinates opponentCell = null;
 		opponentCell = (CellCoordinates) reader.read();
-		Boolean b = me.getMyBoard().isCellAShip(opponentCell);
+		boolean b = me.getMyBoard().isCellAShip(opponentCell);
 		if (b) {
 			statusBox.setText("Player hit your ship");
 		} else {

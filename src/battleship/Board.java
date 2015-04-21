@@ -18,33 +18,35 @@ public class Board {
 
 	}
 
-	
-	public void disableCells(){
-		for(Cell[] c : board){
-			for(Cell d : c){
+	public void disableCells() {
+		for (Cell[] c : board) {
+			for (Cell d : c) {
 				d.setEnabled(false);
 			}
 		}
 	}
-	
-	public boolean isCellAShip(CellCoordinates cellClicked){
-		board[cellClicked.getX()][cellClicked.getY()].clicked();
-		if(board[cellClicked.getX()][cellClicked.getY()].getOccupiedByShip()){
-		board[cellClicked.getX()][cellClicked.getY()].setBackground(Color.RED);
+
+	public boolean isCellAShip(CellCoordinates cellClicked) {
+		int x = cellClicked.getX();
+		int y = cellClicked.getY();
+		board[x][y].clicked();
+		if (board[x][y].getOccupiedByShip()) {
+			board[x][y].setBackground(Color.RED);
 		}
-		return board[cellClicked.getX()][cellClicked.getY()].getOccupiedByShip();
+		return board[x][y].getOccupiedByShip();
 	}
-	
-	public void markAsShip(Cell cellClicked){
+
+	public void markAsShip(Cell cellClicked) {
 		cellClicked.setColor(Color.RED);
-		//cellClicked.setBackground(Color.RED);
+		// cellClicked.setBackground(Color.RED);
 	}
-	
-	public void markAsClicked(Cell cellClicked){
+
+	public void markAsClicked(Cell cellClicked) {
 		cellClicked.setColor(Color.WHITE);
-		//cellClicked.setBackground(Color.WHITE);
+		// cellClicked.setBackground(Color.WHITE);
 	}
-	public Cell[][] getBoard(){
+
+	public Cell[][] getBoard() {
 		return board;
 	}
 

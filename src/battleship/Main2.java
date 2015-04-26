@@ -8,10 +8,12 @@ public class Main2 {
 		while (true) {
 			game.yourTurn();
 			if (game.didYouLose()) {
+				game.displayWin();
 				break;
 			}
 			game.myTurn();
 			if (game.didILose()) {
+				game.displayLose();
 				break;
 			}
 		}

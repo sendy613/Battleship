@@ -12,7 +12,8 @@ public class Cell extends JButton{
 	private boolean occupiedByShip;
 	private static final Color defaultCellColor = new Color(51, 102, 204);
 	private boolean sunk;
-
+	private int shipNum;
+	
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -21,7 +22,11 @@ public class Cell extends JButton{
 		sunk = false;
 		setBackground(defaultCellColor);
 	}
-
+	public Cell(int x, int y, int shipNum) {
+		this(x,y);
+		this.shipNum = shipNum;
+		
+	}
 	public int getCellX() {
 		return x;
 	}
@@ -58,6 +63,9 @@ public class Cell extends JButton{
 	}
 	public boolean getSunk(){
 		return sunk;
+	}
+	public int getShipNum(){
+		return shipNum;
 	}
 	
 }

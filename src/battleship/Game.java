@@ -69,13 +69,14 @@ public class Game {
 		reader.write(cellCoords);
 		boolean hitAShip = (boolean) reader.read();
 		if (hitAShip) {
-			me.getOpponentBoard().markAsShip(cellClicked);
-			if(me.sunkShip(cellCoords)){
+			me.getOpponentBoard().markAsShip(cellClicked);			
+			/*if(me.sunkShip(cellCoords)){
 				statusBox.setText("HIT! \n Ship sank!");
 			}
 			else{
 			statusBox.setText("HIT!");
-			}
+			}*/
+			statusBox.setText("HIT!");
 		} else {
 			me.getOpponentBoard().markAsClicked(cellClicked);
 			statusBox.setText("MISS!");
@@ -88,6 +89,7 @@ public class Game {
 		boolean b = me.getMyBoard().isCellAShip(opponentCell);
 		if (b) {
 			statusBox.setText("Player hit your ship");
+			me.getArray(opponentCell).anotherCellSunk();
 		} else {
 			statusBox.setText("Player missed your ship");
 		}
@@ -97,8 +99,8 @@ public class Game {
 	public boolean didILose() {
 		boolean allSunk = me.allSunk();
 		if (allSunk) {
-			reader.write("I WON");
-			statusBox.setText("YOU WON!");
+			reader.write("YOU WON");
+			statusBox.setText("I LOST! \n All your ships were sunk!");
 			gui.deactivate();
 		} else {
 			reader.write("Nope");
@@ -109,9 +111,9 @@ public class Game {
 	public boolean didYouLose() {
 		boolean b = false;
 		String won = (String) reader.read();
-		if (won.equals("I WON")) {
+		if (won.equals("YOU WON")) {
 			b = true;
-			statusBox.setText("Game Over. All your ships have sunk.");
+			statusBox.setText("I WON! \n You have sunk all the ships!");
 			gui.deactivate();
 		}
 		return b;

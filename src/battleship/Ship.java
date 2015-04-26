@@ -7,16 +7,16 @@ public class Ship {
 	private Cell[] cellsArray;
 	private boolean vertical;
 	private Color color;
-//	private boolean sunk;
-//	private int amountSunk;
+	private boolean sunk;
+	private int amountSunk;
 
 	public Ship(int numOfCells, boolean vertical, Color color) {
 		this.numOfCells = numOfCells;
 		this.cellsArray = new Cell[numOfCells];
 		this.vertical = vertical;
 		this.color = color;
-//		sunk = false;
-	//	amountSunk = 0;
+		sunk = false;
+		amountSunk = 0;
 	}
 
 	public Cell[] getCellsArray() {
@@ -37,7 +37,7 @@ public class Ship {
 	public boolean getVertical(){
 		return vertical;
 	}
-/*
+
 	public boolean isSunk() {
 		if (numOfCells == amountSunk) {
 			sunk = true;
@@ -47,7 +47,7 @@ public class Ship {
 
 	public int getAmountSunk() {
 		return amountSunk;
-	}*/
+	}
 
 	public void setNumOfCells(int numOfCells) {
 		this.numOfCells = numOfCells;
@@ -60,13 +60,9 @@ public class Ship {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-/*
-	public void setSunk(boolean sunk) {
-		this.sunk = sunk;
-	}
 
 	public void anotherCellSunk() {
 		this.amountSunk++;
-	}*/
+	}
 
 }

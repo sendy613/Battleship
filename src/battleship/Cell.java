@@ -11,12 +11,14 @@ public class Cell extends JButton{
 	private boolean clicked;
 	private boolean occupiedByShip;
 	private static final Color defaultCellColor = new Color(51, 102, 204);
+	private boolean sunk;
 
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
 		clicked = false;
 		occupiedByShip = false;
+		sunk = false;
 		setBackground(defaultCellColor);
 	}
 
@@ -38,6 +40,9 @@ public class Cell extends JButton{
 
 	public void clicked() {
 		clicked = true;
+		if(occupiedByShip){
+			sunk=true;
+		}
 	}
 
 	public void occupiedByShip() {
@@ -51,6 +56,8 @@ public class Cell extends JButton{
 	public boolean getOccupiedByShip() {
 		return occupiedByShip;
 	}
-
+	public boolean getSunk(){
+		return sunk;
+	}
 	
 }

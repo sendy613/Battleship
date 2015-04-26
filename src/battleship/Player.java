@@ -80,4 +80,7 @@ public class Player {
 	public int getPlayerNumber() {
 		return playerNumber;
 	}
+	public void markCellSunk(Cell opponentCell){
+		
+	}
 }

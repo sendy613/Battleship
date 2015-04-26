@@ -39,8 +39,13 @@ public class PlayerGui extends JFrame {
 	private JTextPane statusBox;
 	private JPanel title;
 	private Image logo;
-	//private ImageIcon imageIcon;
 	private JLabel imageLabel;
+	private JPanel winPanel;
+	private JPanel losePanel;
+	private Image winImage;
+	private Image loseImage;
+	private JLabel winLabel;
+	private JLabel loseLabel; 
 
 	public PlayerGui(Player player) {
 		myBoard = player.getMyBoard();
@@ -62,9 +67,7 @@ public class PlayerGui extends JFrame {
 		imageLabel = new JLabel(new ImageIcon(logo));
 		title.add(imageLabel);
 		Color blue = new Color(102, 153, 255);
-		// Color purple = new Color(204, 153, 255);
 		Color red = new Color(207, 20, 20);
-		// Color darkBlue = new Color(51, 102, 204);
 
 		myBoardPanel = new JPanel(new GridLayout(8, 8, 1, 1));
 		myBoardPanel.setBorder(new EmptyBorder(3, 3, 3, 3));
@@ -105,8 +108,6 @@ public class PlayerGui extends JFrame {
 
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						// COMMENT
-						System.out.println("cell clicked");
 						cellClicked = (Cell) e.getSource();
 						cellClicked.clicked();
 						cellClicked.setEnabled(false);
@@ -134,6 +135,18 @@ public class PlayerGui extends JFrame {
 		contentPane.add(panel);
 
 		myBoard.disableCells();
+		
+		winPanel = new JPanel();
+		losePanel = new JPanel();
+		try {
+			winImage = ImageIO.read(new File("win.png"));
+			loseImage = ImageIO.read(new File("gameover"));
+		} catch (IOException e1) {
+		}
+		winLabel = new JLabel(new ImageIcon(winImage));
+		winPanel.add(winLabel);
+		loseLabel = new JLabel(new ImageIcon(loseImage));
+		losePanel.add(loseLabel);
 
 	}
 
@@ -167,5 +180,11 @@ public class PlayerGui extends JFrame {
 
 	public JTextPane getStatus() {
 		return statusBox;
+	}
+	public void displayLose(){
+		panel.add(losePanel, BorderLayout.CENTER);
+	}
+	public void displayWin(){
+		panel.add(winPanel, BorderLayout.CENTER);
 	}
 }

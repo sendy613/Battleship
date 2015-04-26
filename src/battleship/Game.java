@@ -3,6 +3,7 @@ package battleship;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 import javax.swing.JTextPane;
 
 public class Game {
@@ -56,18 +57,27 @@ public class Game {
 
 	public void myTurn() {
 		gui.activate();
-		while (gui.isActivated())
-			;
+		while (gui.isActivated()){
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		};
 		Cell cellClicked = gui.getCellClicked();
-		reader.write(new CellCoordinates(cellClicked));
+		CellCoordinates cellCoords = new CellCoordinates(cellClicked);
+		reader.write(cellCoords);
 		boolean hitAShip = (boolean) reader.read();
 		if (hitAShip) {
 			me.getOpponentBoard().markAsShip(cellClicked);
-			System.out.println("HIT");
+			if(me.sunkShip(cellCoords)){
+				statusBox.setText("HIT! \n Ship sank!");
+			}
+			else{
 			statusBox.setText("HIT!");
+			}
 		} else {
 			me.getOpponentBoard().markAsClicked(cellClicked);
-			System.out.println("MISS");
 			statusBox.setText("MISS!");
 		}
 	}
@@ -115,5 +125,10 @@ public class Game {
 	public void repaint() {
 		gui.repaint();
 	}
-
+	public void displayLose(){
+		gui.displayLose();
+	}
+	public void displayWin(){
+		gui.displayWin();
+	}
 }

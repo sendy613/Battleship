@@ -45,7 +45,7 @@ public class PlayerGui extends JFrame {
 	private Image winImage;
 	private Image loseImage;
 	private JLabel winLabel;
-	private JLabel loseLabel; 
+	private JLabel loseLabel;
 	private Container contentPane;
 
 	public PlayerGui(Player player) {
@@ -136,18 +136,20 @@ public class PlayerGui extends JFrame {
 		contentPane.add(panel);
 
 		myBoard.disableCells();
-		
-		winPanel = new JPanel();
-		losePanel = new JPanel();
+
+		winPanel = new JPanel(new BorderLayout());
+		winPanel.setBackground(blue);
+		losePanel = new JPanel(new BorderLayout());
+		losePanel.setBackground(blue);
 		try {
 			winImage = ImageIO.read(new File("win.png"));
 			loseImage = ImageIO.read(new File("gameover.png"));
 		} catch (IOException e1) {
 		}
 		winLabel = new JLabel(new ImageIcon(winImage));
-		winPanel.add(winLabel);
+		winPanel.add(winLabel, BorderLayout.CENTER);
 		loseLabel = new JLabel(new ImageIcon(loseImage));
-		losePanel.add(loseLabel);
+		losePanel.add(loseLabel, BorderLayout.CENTER);
 
 	}
 
@@ -182,10 +184,16 @@ public class PlayerGui extends JFrame {
 	public JTextPane getStatus() {
 		return statusBox;
 	}
-	public void displayLose(){
-		contentPane.add(losePanel, BorderLayout.CENTER);
+
+	public void displayLose() {
+		panel.remove(boardPanel);
+		panel.add(losePanel, BorderLayout.CENTER);
+		revalidate();
 	}
-	public void displayWin(){
-		contentPane.add(winPanel, BorderLayout.CENTER);
+
+	public void displayWin() {
+		panel.remove(boardPanel);
+		panel.add(winPanel, BorderLayout.CENTER);
+		revalidate();
 	}
 }

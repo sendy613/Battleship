@@ -7,15 +7,21 @@ public class Main2 {
 		game.setGuiVisible();
 		while (true) {
 			game.yourTurn();
-			if (game.didYouLose()) {
-				game.displayWin();
+
+			if (game.didILose() || game.didYouLose()) {
 				break;
 			}
 			game.myTurn();
-			if (game.didILose()) {
-				game.displayLose();
+			if (game.didILose() || game.didYouLose()) {
 				break;
 			}
+
+		}
+
+		if (game.didILose()) {
+			game.displayLose();
+		} else {
+			game.displayWin();
 		}
 	}
 }

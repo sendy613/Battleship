@@ -57,25 +57,23 @@ public class Game {
 
 	public void myTurn() {
 		gui.activate();
-		while (gui.isActivated()){
+		while (gui.isActivated()) {
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		};
+		}
+		;
 		Cell cellClicked = gui.getCellClicked();
 		CellCoordinates cellCoords = new CellCoordinates(cellClicked);
 		reader.write(cellCoords);
-		boolean hitAShip = (boolean) reader.read();
-		if (hitAShip) {
-			me.getOpponentBoard().markAsShip(cellClicked);			
-			/*if(me.sunkShip(cellCoords)){
-				statusBox.setText("HIT! \n Ship sank!");
-			}
-			else{
-			statusBox.setText("HIT!");
-			}*/
+		String hitAShip = (String) reader.read();
+		if (hitAShip.compareTo("sunk") == 0) {
+			me.getOpponentBoard().markAsShip(cellClicked);
+			statusBox.setText("HIT! \n Sunk ship!");
+		} else if (hitAShip.compareTo("hit") == 0) {
+			me.getOpponentBoard().markAsShip(cellClicked);
 			statusBox.setText("HIT!");
 		} else {
 			me.getOpponentBoard().markAsClicked(cellClicked);
@@ -87,20 +85,29 @@ public class Game {
 		CellCoordinates opponentCell = null;
 		opponentCell = (CellCoordinates) reader.read();
 		boolean b = me.getMyBoard().isCellAShip(opponentCell);
+
+		boolean sunkShip;
 		if (b) {
-			statusBox.setText("Player hit your ship");
 			me.getArray(opponentCell).anotherCellSunk();
+			sunkShip = me.getArray(opponentCell).isSunk();
+			if (sunkShip) {
+				statusBox.setText("Player sunk your ship");
+				reader.write("sunk");
+			} else {
+				statusBox.setText("Player hit your ship");
+				reader.write("hit");
+			}
 		} else {
 			statusBox.setText("Player missed your ship");
+			reader.write("miss");
 		}
-		reader.write(b);
 	}
 
 	public boolean didILose() {
 		boolean allSunk = me.allSunk();
 		if (allSunk) {
 			reader.write("YOU WON");
-			statusBox.setText("I LOST! \n All your ships were sunk!");
+			statusBox.setText("YOU LOST! \n All of your ships were sunk!");
 			gui.deactivate();
 		} else {
 			reader.write("Nope");
@@ -113,7 +120,7 @@ public class Game {
 		String won = (String) reader.read();
 		if (won.equals("YOU WON")) {
 			b = true;
-			statusBox.setText("I WON! \n You have sunk all the ships!");
+			statusBox.setText("YOU WON! \n You have sunk all the ships!");
 			gui.deactivate();
 		}
 		return b;
@@ -127,10 +134,12 @@ public class Game {
 	public void repaint() {
 		gui.repaint();
 	}
-	public void displayLose(){
+
+	public void displayLose() {
 		gui.displayLose();
 	}
-	public void displayWin(){
+
+	public void displayWin() {
 		gui.displayWin();
 	}
 }

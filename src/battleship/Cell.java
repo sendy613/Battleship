@@ -3,8 +3,8 @@ package battleship;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class Cell extends JButton{
-	
+public class Cell extends JButton {
+
 	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
@@ -13,7 +13,7 @@ public class Cell extends JButton{
 	private static final Color defaultCellColor = new Color(51, 102, 204);
 	private boolean sunk;
 	private int shipNum;
-	
+
 	public Cell(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -22,15 +22,17 @@ public class Cell extends JButton{
 		sunk = false;
 		setBackground(defaultCellColor);
 	}
+
 	public Cell(int x, int y, int shipNum) {
-		this(x,y);
+		this(x, y);
 		this.shipNum = shipNum;
-		
+
 	}
+
 	public int getCellX() {
 		return x;
 	}
-	
+
 	public void setCellX(int x) {
 		this.x = x;
 	}
@@ -45,8 +47,8 @@ public class Cell extends JButton{
 
 	public void clicked() {
 		clicked = true;
-		if(occupiedByShip){
-			sunk=true;
+		if (occupiedByShip) {
+			sunk = true;
 		}
 	}
 
@@ -61,11 +63,13 @@ public class Cell extends JButton{
 	public boolean getOccupiedByShip() {
 		return occupiedByShip;
 	}
-	public boolean getSunk(){
+
+	public boolean getSunk() {
 		return sunk;
 	}
-	public int getShipNum(){
+
+	public int getShipNum() {
 		return shipNum;
 	}
-	
+
 }

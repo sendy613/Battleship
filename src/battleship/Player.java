@@ -24,25 +24,25 @@ public class Player {
 		arrayOfShips[4] = new Ship(5, false, Color.WHITE);
 
 		// hard coded ships - allow user to enter this info
-		//player 1
-		if(this.playerNumber==1){
-		arrayOfShips[0].setCellsArray(new Cell[] { new Cell(2, 2, 0), new Cell(3, 2, 0) });
-		arrayOfShips[1].setCellsArray(new Cell[] { new Cell(0, 0, 1), new Cell(1, 0, 1), new Cell(2, 0, 1) });
-		arrayOfShips[2].setCellsArray(new Cell[] { new Cell(4, 3, 2), new Cell(4, 4, 2), new Cell(4, 5, 2) });
-		arrayOfShips[3].setCellsArray(new Cell[] { new Cell(7, 7, 3), new Cell(6, 7, 3), new Cell(5, 7, 3), new Cell(4, 7, 3) });
-		arrayOfShips[4].setCellsArray(new Cell[] { new Cell(6, 1, 4), new Cell(6, 2, 4), new Cell(6, 3, 4), new Cell(6, 4, 4),
-				new Cell(6, 5, 4) });
-		}
-		else{
+		// player 1
+		if (this.playerNumber == 1) {
+			arrayOfShips[0].setCellsArray(new Cell[] { new Cell(2, 2, 0), new Cell(3, 2, 0) });
+			arrayOfShips[1].setCellsArray(new Cell[] { new Cell(0, 0, 1), new Cell(1, 0, 1), new Cell(2, 0, 1) });
+			arrayOfShips[2].setCellsArray(new Cell[] { new Cell(4, 3, 2), new Cell(4, 4, 2), new Cell(4, 5, 2) });
+			arrayOfShips[3].setCellsArray(new Cell[] { new Cell(7, 7, 3), new Cell(6, 7, 3), new Cell(5, 7, 3),
+					new Cell(4, 7, 3) });
+			arrayOfShips[4].setCellsArray(new Cell[] { new Cell(6, 1, 4), new Cell(6, 2, 4), new Cell(6, 3, 4),
+					new Cell(6, 4, 4), new Cell(6, 5, 4) });
+		} else {
 			arrayOfShips[0].setCellsArray(new Cell[] { new Cell(6, 2, 0), new Cell(7, 2, 0) });
 			arrayOfShips[1].setCellsArray(new Cell[] { new Cell(0, 1, 1), new Cell(1, 1, 1), new Cell(2, 1, 1) });
 			arrayOfShips[2].setCellsArray(new Cell[] { new Cell(6, 3, 2), new Cell(6, 4, 2), new Cell(6, 5, 2) });
-			arrayOfShips[3].setCellsArray(new Cell[] { new Cell(7, 0, 3), new Cell(6, 0, 3), new Cell(5, 0, 3), new Cell(4, 0, 3) });
-			arrayOfShips[4].setCellsArray(new Cell[] { new Cell(3, 3, 4), new Cell(3, 4, 4), new Cell(3, 5, 4), new Cell(3, 6, 4),
-					new Cell(3, 7, 4) });
+			arrayOfShips[3].setCellsArray(new Cell[] { new Cell(7, 0, 3), new Cell(6, 0, 3), new Cell(5, 0, 3),
+					new Cell(4, 0, 3) });
+			arrayOfShips[4].setCellsArray(new Cell[] { new Cell(3, 3, 4), new Cell(3, 4, 4), new Cell(3, 5, 4),
+					new Cell(3, 6, 4), new Cell(3, 7, 4) });
 		}
-		
-		
+
 		for (int i = 0; i < arrayOfShips.length; i++) {
 			Cell[] temp = arrayOfShips[i].getCellsArray();
 			for (int j = 0; j < temp.length; j++) {
@@ -52,7 +52,6 @@ public class Player {
 				tempCell.occupiedByShip();
 			}
 		}
-		
 
 	}
 
@@ -81,10 +80,22 @@ public class Player {
 		return playerNumber;
 	}
 
-	public Ship getArray(CellCoordinates cell){
+	public Ship getArray(CellCoordinates cell) {
 		int x = cell.getX();
 		int y = cell.getY();
-		int shipNum = myBoard.getBoard()[x][y].getShipNum();
+		int shipNum = -1;
+		Cell[] cellArray;
+		loop: {
+			for (int i = 0; i < arrayOfShips.length; i++) {
+				cellArray = arrayOfShips[i].getCellsArray();
+				for (int j = 0; j < cellArray.length; j++) {
+					if (x == cellArray[j].getCellX() && y == cellArray[j].getCellY()) {
+						shipNum = cellArray[j].getShipNum();
+						break loop;
+					}
+				}
+			}
+		}
 		return arrayOfShips[shipNum];
 	}
 }

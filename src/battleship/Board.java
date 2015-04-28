@@ -41,7 +41,6 @@ public class Board {
 		cellClicked.setBackground(Color.RED);
 	}
 
-
 	public void markAsClicked(Cell cellClicked) {
 		cellClicked.setBackground(Color.WHITE);
 	}

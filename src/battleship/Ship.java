@@ -25,7 +25,7 @@ public class Ship {
 
 	public void setCellsArray(Cell[] array) {
 		cellsArray = array;
-		for(Cell cell: cellsArray){
+		for (Cell cell : cellsArray) {
 			cell.setBackground(this.color);
 		}
 	}
@@ -33,8 +33,8 @@ public class Ship {
 	public Color getColor() {
 		return color;
 	}
-	
-	public boolean getVertical(){
+
+	public boolean getVertical() {
 		return vertical;
 	}
 
@@ -63,6 +63,7 @@ public class Ship {
 
 	public void anotherCellSunk() {
 		this.amountSunk++;
+
 	}
 
 }

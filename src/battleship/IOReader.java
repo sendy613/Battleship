@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
-public class IOReader extends Thread{
+public class IOReader extends Thread {
 
 	private InputStream in;
 	private OutputStream out;

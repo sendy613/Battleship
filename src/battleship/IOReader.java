@@ -46,7 +46,9 @@ public class IOReader extends Thread {
 		try {
 			objOut.writeObject(obj);
 			objOut.flush();
+			objOut.reset();
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
